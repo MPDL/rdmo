@@ -20,6 +20,14 @@ class IntegrationCreateView(ObjectPermissionMixin, RedirectViewMixin, CreateView
     form_class = IntegrationForm
     permission_required = 'projects.add_integration_object'
 
+    def setup(self, request, *args, **kwargs) -> None:
+        provider = get_plugin('PROJECT_ISSUE_PROVIDERS', kwargs['provider_key'])
+        integration_setup = getattr(provider, 'integration_setup', None)
+        if provider and integration_setup:
+            provider.integration_setup(request)
+
+        return super().setup(request, *args, **kwargs)
+
     def dispatch(self, *args, **kwargs):
         self.project = get_object_or_404(Project.objects.all(), pk=self.kwargs['project_id'])
         self.provider_key = self.kwargs['provider_key']
