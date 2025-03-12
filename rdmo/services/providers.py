@@ -79,7 +79,8 @@ class OauthProviderMixin:
                     }, status=200)
 
         # if the above did not work authorize first
-        self.store_in_session(request, 'request', (method, url, apply_data_processing, kwargs))
+        kwargs['apply_data_processing'] = apply_data_processing
+        self.store_in_session(request, 'request', (method, url, kwargs))
         return self.authorize(request)
 
     def authorize(self, request):
