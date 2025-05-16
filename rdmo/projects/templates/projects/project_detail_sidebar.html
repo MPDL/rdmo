@@ -110,15 +110,44 @@
 {% if settings.PROJECT_EXPORTS and can_export_project %}
 <h2 id="export-project">{% trans 'Export' %}</h2>
 
+{% if settings.PROJECT_EXPORT_PROVIDERS %}
 <ul class="list-unstyled">
     {% for key, label, class in settings.PROJECT_EXPORTS %}
+    {% if key not in settings.PROJECT_EXPORT_PROVIDERS %}
+    {% if key not in settings.SMP_PROJECT_EXPORTS or project.catalog.uri_path == 'smp' %}
     <li>
         <a href="{% url 'project_export' project.pk key %}" target="_blank">
             {{ label }}
         </a>
     </li>
+    {% endif %}
+    {% endif %}
     {% endfor %}
 </ul>
+<ul class="list-unstyled">
+    {% for key, label, class in settings.PROJECT_EXPORTS %}
+    {% if key in settings.PROJECT_EXPORT_PROVIDERS %}
+    <li>
+        <a href="{% url 'project_export' project.pk key %}" target="_blank">
+            {{ label }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% else %}
+<ul class="list-unstyled">
+    {% for key, label, class in settings.PROJECT_EXPORTS %}
+    {% if key not in settings.SMP_PROJECT_EXPORTS or project.catalog.uri_path == 'smp' %}
+    <li>
+        <a href="{% url 'project_export' project.pk key %}" target="_blank">
+            {{ label }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
 {% endif %}
 
 {% has_perm 'projects.import_project_object' request.user project as can_import_project %}
