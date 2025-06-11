@@ -33,7 +33,7 @@ def get_values(context, attribute, set_prefix='*', set_index='*', index='*', pro
     elif attribute == 'project/snapshot/updated':
         return [Value(text=project.snapshot.get('updated'), value_type=VALUE_TYPE_DATETIME).as_dict]
     else:
-        return project._get_values(attribute, set_prefix, set_index, index)
+        return project._get_values(attribute, str(set_prefix), set_index, index)
 
 
 @register.simple_tag(takes_context=True)
