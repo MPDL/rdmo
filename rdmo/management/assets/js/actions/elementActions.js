@@ -1,4 +1,8 @@
-import isNil from 'lodash/isNil'
+import { get, isNil } from 'lodash'
+
+import { addToPending, removeFromPending } from 'rdmo/core/assets/js/actions/pendingActions'
+import { updateConfig } from 'rdmo/core/assets/js/actions/configActions'
+import { siteId } from 'rdmo/core/assets/js/utils/meta'
 
 import ConditionsApi from '../api/ConditionsApi'
 import DomainApi from '../api/DomainApi'
@@ -16,12 +20,15 @@ import ViewsFactory from '../factories/ViewsFactory'
 
 import { elementTypes } from '../constants/elements'
 import { updateLocation } from '../utils/location'
-import { canMoveElement, moveElement } from '../utils/elements'
+import { canMoveElement, findDescendants, moveElement, updateWarning } from '../utils/elements'
 
 export function fetchElements(elementType) {
-  return function(dispatch, getState) {
-    updateLocation(getState().config.baseUrl, elementType)
+  const pendingId = `fetchElements/${elementType}`
 
+  return function(dispatch) {
+    updateLocation(elementType)
+
+    dispatch(addToPending(pendingId))
     dispatch(fetchElementsInit(elementType))
 
     let action
@@ -84,6 +91,7 @@ export function fetchElements(elementType) {
 
     return dispatch(action)
       .catch(error => dispatch(fetchElementsError(error)))
+      .finally(() => dispatch(removeFromPending(pendingId)))
   }
 }
 
@@ -102,9 +110,12 @@ export function fetchElementsError(error) {
 // fetch element
 
 export function fetchElement(elementType, elementId, elementAction=null) {
-  return function(dispatch, getState) {
-    updateLocation(getState().config.baseUrl, elementType, elementId, elementAction)
+  const pendingId = `fetchElement/${elementType}/${elementId}` + (isNil(elementAction) ? '' : `/${elementAction}`)
 
+  return function(dispatch, getState) {
+    updateLocation(elementType, elementId, elementAction)
+
+    dispatch(addToPending(pendingId))
     dispatch(fetchElementInit(elementType, elementId, elementAction))
 
     let action
@@ -112,7 +123,7 @@ export function fetchElement(elementType, elementId, elementAction=null) {
       case 'catalogs':
         if (elementAction == 'nested') {
           action = () => QuestionsApi.fetchCatalog(elementId, 'nested')
-            .then(element => ({ element }))
+            .then(element => ({ element: updateWarning(element) }))
         } else {
           action = () => Promise.all([
             QuestionsApi.fetchCatalog(elementId),
@@ -337,19 +348,20 @@ export function fetchElement(elementType, elementId, elementAction=null) {
     return dispatch(action)
       .then(elements => {
         if (elementAction == 'copy') {
-          const { settings, currentSite } = getState().config
+          const { settings } = getState().config
 
           elements.element.id = null
           elements.element.read_only = false
 
           if (settings.multisite) {
-            elements.element.sites = [currentSite.id]
-            elements.element.editors = [currentSite.id]
+            elements.element.sites = [siteId]
+            elements.element.editors = [siteId]
           }
         }
         return dispatch(fetchElementSuccess({ ...elements }))
       })
       .catch(error => dispatch(fetchElementError(error)))
+      .finally(() => dispatch(removeFromPending(pendingId)))
   }
 }
 
@@ -368,8 +380,12 @@ export function fetchElementError(error) {
 // store element
 
 export function storeElement(elementType, element, elementAction = null, back = false) {
+  const pendingId = `storeElement/${elementType}` + (isNil(element.id) ? '' : `/${element.id}`)
+                                                  + (isNil(elementAction) ? '' : `/${elementAction}`)
+
   return function(dispatch, getState) {
 
+    dispatch(addToPending(pendingId))
     dispatch(storeElementInit(element))
 
     let action
@@ -429,6 +445,7 @@ export function storeElement(elementType, element, elementAction = null, back = 
         }
       })
       .catch(error => dispatch(storeElementError(element, error)))
+      .finally(() => dispatch(removeFromPending(pendingId)))
   }
 }
 
@@ -447,9 +464,12 @@ export function storeElementError(element, error) {
 // createElement
 
 export function createElement(elementType, parent={}) {
-  return function(dispatch, getState) {
-    updateLocation(getState().config.baseUrl, elementType, null, 'create')
+  const pendingId = `createElement/${elementType}`
 
+  return function(dispatch, getState) {
+    updateLocation(elementType, null, 'create')
+
+    dispatch(addToPending(pendingId))
     dispatch(createElementInit(elementType))
 
     let action
@@ -574,6 +594,7 @@ export function createElement(elementType, parent={}) {
     return dispatch(action)
       .then(elements => dispatch(createElementSuccess({...elements})))
       .catch(error => dispatch(createElementError(error)))
+      .finally(() => dispatch(removeFromPending(pendingId)))
   }
 }
 
@@ -592,7 +613,10 @@ export function createElementError(error) {
 // delete element
 
 export function deleteElement(elementType, element) {
+  const pendingId = `deleteElement/${elementType}/${element.id}`
+
   return function(dispatch) {
+    dispatch(addToPending(pendingId))
     dispatch(deleteElementInit(element))
 
     let action
@@ -648,6 +672,7 @@ export function deleteElement(elementType, element) {
         history.back()
       })
       .catch(error => dispatch(deleteElementError(element, error)))
+      .finally(() => dispatch(removeFromPending(pendingId)))
   }
 }
 
@@ -683,5 +708,21 @@ export function dropElement(dragElement, dropElement, mode) {
       dispatch(storeElement(elementTypes[dropParent.model], dropParent))
       }
     }
+  }
+}
+
+// toggle elements
+
+export function toggleElements(element) {
+  return (dispatch, getState) => {
+    const path = `display.elements.${elementTypes[element.model]}.${element.id}`
+    const value = !get(getState().config, path, true)
+    dispatch(updateConfig(path, value))
+  }
+}
+
+export function toggleDescendants(element, elementType) {
+  return (dispatch) => {
+    findDescendants(element, elementType).forEach(e => dispatch(toggleElements(e)))
   }
 }

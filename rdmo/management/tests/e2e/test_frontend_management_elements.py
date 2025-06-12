@@ -14,6 +14,7 @@ from rdmo.questions.models import Catalog
 pytestmark = pytest.mark.e2e
 
 
+@pytest.mark.parametrize("page", ["page_single", "page_multisite"], indirect=True)
 @pytest.mark.parametrize("helper", model_helpers)
 def test_management_navigation(page: Page, helper: ModelHelper) -> None:
     """Test that each content type is available through the navigation."""
@@ -32,9 +33,10 @@ def test_management_navigation(page: Page, helper: ModelHelper) -> None:
     if helper.model == Catalog:
         item_in_ui = page.locator(".list-group > .list-group-item").first
         expect(item_in_ui).to_be_visible()
-        page.screenshot(path="screenshots/management-navigation-catalog.png", full_page=True)
+        page.screenshot(path="screenshots/management/navigation-catalog.png", full_page=True)
 
 
+@pytest.mark.parametrize("page", ["page_single", "page_multisite"], indirect=True)
 @pytest.mark.parametrize("helper", model_helpers)
 def test_management_has_items(page: Page, helper: ModelHelper) -> None:
     """Test all items in database are visible in management UI."""
@@ -44,6 +46,7 @@ def test_management_has_items(page: Page, helper: ModelHelper) -> None:
     expect(items_in_ui).to_have_count(num_items_in_database)
 
 
+@pytest.mark.parametrize("page", ["page_single", "page_multisite"], indirect=True)
 @pytest.mark.parametrize("helper", model_helpers)
 def test_management_nested_view(page: Page, helper: ModelHelper) -> None:
     """For each element type, that has a nested view, click the first example."""
@@ -55,6 +58,7 @@ def test_management_nested_view(page: Page, helper: ModelHelper) -> None:
         expect(page.locator(".panel-default > .panel-body").first).to_be_visible()
 
 
+@pytest.mark.parametrize("page", ["page_single", "page_multisite"], indirect=True)
 @pytest.mark.parametrize("helper", model_helpers)
 def test_management_create_model(page: Page, helper: ModelHelper) -> None:
     """Test management UI can create objects in the database."""
@@ -83,7 +87,7 @@ def test_management_create_model(page: Page, helper: ModelHelper) -> None:
     query = {helper.db_field: value}
     assert helper.model.objects.get(**query)
 
-
+@pytest.mark.parametrize("page", ["page_single", "page_multisite"], indirect=True)
 @pytest.mark.parametrize("helper", model_helpers)
 def test_management_edit_model(page: Page, helper: ModelHelper) -> None:
     page.goto(f"/management/{helper.url}")
@@ -105,3 +109,37 @@ def test_management_edit_model(page: Page, helper: ModelHelper) -> None:
     url_id = int(urlparse(page.url).path.rstrip("/").split("/")[-1])
     model_obj = helper.model.objects.get(id=url_id)
     assert model_obj.comment == comment
+
+
+def test_management_navigation_filters(page_multisite: Page) -> None:
+    """Test that each content type is available through the navigation."""
+    page = page_multisite
+
+    expect(page.get_by_role("heading", name="Management")).to_be_visible()
+
+    # add search to filter
+    page.get_by_role("textbox", name="Filter catalogs").click()
+    page.get_by_role("textbox", name="Filter catalogs").fill("bar")
+
+    # filter URI prefix
+    page.get_by_label("Filter URI prefix").select_option("https://bar.com/terms")
+
+    # filter sites and editors, requires MULTISITE to be enabled
+    page.get_by_label("Filter sites").select_option("3")
+    page.get_by_label("Filter editors").select_option("3")
+
+    # assert bar-catalog
+    expect(page.get_by_text("bar-catalog", exact=True)).to_be_visible()
+
+    # reload
+    page.reload()
+
+    # reset all filters
+    page.get_by_label("Filter URI prefix").select_option("")
+    page.get_by_label("Filter sites").select_option("")
+    page.get_by_label("Filter editors").select_option("")
+    page.get_by_role("button", name="Reset").click()
+
+    # reload
+    page.reload()
+    expect(page.get_by_role("link", name="http://example.com/terms/questions/catalog", exact=True)).to_be_visible()
