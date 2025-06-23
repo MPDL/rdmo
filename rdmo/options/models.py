@@ -96,6 +96,11 @@ class OptionSet(models.Model):
     @property
     def provider(self) -> list:
         return get_plugin('OPTIONSET_PROVIDERS', self.provider_key)
+    
+    @property
+    def provider_widget_props(self) -> dict:
+        widget_props = self.provider.widget_props if self.provider else {}
+        return widget_props
 
     @property
     def has_provider(self) -> bool:

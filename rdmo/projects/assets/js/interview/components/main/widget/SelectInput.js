@@ -15,13 +15,14 @@ import { projectId } from '../../../utils/meta'
 import { getQuestionTextId, getQuestionHelpId } from '../../../utils/question'
 import { isDefaultValue } from '../../../utils/value'
 import { getValueOption } from '../../../utils/options'
+import { gatherProviderWidgetProps } from '../../../utils/providers'
 
 import OptionHelp from './common/OptionHelp'
 import OptionText from './common/OptionText'
 
 
 const SelectInput = ({ question, value, options, disabled, creatable, updateValue, buttons }) => {
-
+  
   const [inputValue, setInputValue] = useState('')
 
   const handleChange = (option) => {
@@ -81,7 +82,7 @@ const SelectInput = ({ question, value, options, disabled, creatable, updateValu
 
   const isAsync = question.optionsets.some((optionset) => optionset.has_search)
 
-  const selectProps = {
+  let selectProps = {
     key: value.id,
     classNamePrefix: 'react-select',
     className: classnames,
@@ -106,6 +107,8 @@ const SelectInput = ({ question, value, options, disabled, creatable, updateValu
       </span>
     )
   }
+
+  selectProps = gatherProviderWidgetProps(selectProps, question.optionsets)
 
   return (
     <div className="interview-input select-input">
