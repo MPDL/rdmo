@@ -152,6 +152,13 @@ class RDMOXMLImport(Import):
             for value_node in values_node.findall('value'):
                 self.values.append(self.get_value(value_node))
 
+        def sort_by_external_id(e):
+            # values without an external id come first
+            # external id marke values used by option providers
+            return e.external_id
+
+        self.values.sort(key = sort_by_external_id)
+       
         snapshots_node = self.root.find('snapshots')
         if snapshots_node is not None:
             for snapshot_index, snapshot_node in enumerate(snapshots_node.findall('snapshot')):
