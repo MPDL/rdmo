@@ -73,9 +73,14 @@
     {% endif %}
     {% endwith %}
 
-    {% if field.errors %}
+    {% if field.errors and field.errors.as_text|length > 1 %}
+    <!-- 
+    field.errors.as_text|length > 1: errors start with *, so empty string messages have a length == 1 
+    errors with an empty string message: some errors in multivalue fields are subfield specific, 
+        so subfield's widget template should display error, instead of field template itself
+    -->
     <div class="help-block error">
-        <p class="text-danger">{{ field.errors.as_text}}</p>
+        <p class="text-danger">{{ field.errors.as_text }}</p>
     </div>
     {% endif %}
 </div>
