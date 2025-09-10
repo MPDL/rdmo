@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RDMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 11:19+0000\n"
+"POT-Creation-Date: 2025-09-10 14:31+0000\n"
 "PO-Revision-Date: 2025-04-28 13:46+0200\n"
 "Last-Translator: Jochen Klar <jklar@aip.de>\n"
 "Language-Team: RDMO <rdmo-team@listserv.dfn.de>\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Die Zustimmung konnte nicht gespeichert werden. Bitte versuchen Sie es "
 "erneut."
 
-#: accounts/models.py:27 options/models.py:181 questions/models/question.py:97
+#: accounts/models.py:27 options/models.py:186 questions/models/question.py:97
 #: tasks/models.py:96
 msgid "Text (primary)"
 msgstr "Text (erste Sprache)"
@@ -54,7 +54,7 @@ msgstr "Text (erste Sprache)"
 msgid "The text for this additional field (in the primary language)."
 msgstr "Der Text für das zusätzliche Feld (erste Sprache)."
 
-#: accounts/models.py:32 options/models.py:186 questions/models/question.py:102
+#: accounts/models.py:32 options/models.py:191 questions/models/question.py:102
 #: tasks/models.py:101
 msgid "Text (secondary)"
 msgstr "Text (zweite Sprache)"
@@ -63,7 +63,7 @@ msgstr "Text (zweite Sprache)"
 msgid "The text for this additional field (in the secondary language)."
 msgstr "Der Text für das zusätzliche Feld (zweite Sprache)."
 
-#: accounts/models.py:37 options/models.py:191 questions/models/question.py:107
+#: accounts/models.py:37 options/models.py:196 questions/models/question.py:107
 #: tasks/models.py:106
 msgid "Text (tertiary)"
 msgstr "Text (dritte Sprache)"
@@ -72,7 +72,7 @@ msgstr "Text (dritte Sprache)"
 msgid "The text for this additional field (in the tertiary language)."
 msgstr "Der Text für das zusätzliche Feld (dritte Sprache)."
 
-#: accounts/models.py:42 options/models.py:196 questions/models/question.py:112
+#: accounts/models.py:42 options/models.py:201 questions/models/question.py:112
 #: tasks/models.py:111
 msgid "Text (quaternary)"
 msgstr "Text (vierte Sprache)"
@@ -81,7 +81,7 @@ msgstr "Text (vierte Sprache)"
 msgid "The text for this additional field (in the quaternary language)."
 msgstr "Der Text für das zusätzliche Feld (vierte Sprache)."
 
-#: accounts/models.py:47 options/models.py:201 questions/models/question.py:117
+#: accounts/models.py:47 options/models.py:206 questions/models/question.py:117
 #: tasks/models.py:116
 msgid "Text (quinary)"
 msgstr "Text (fünfte Sprache)"
@@ -90,7 +90,7 @@ msgstr "Text (fünfte Sprache)"
 msgid "The text for this additional field (in the quinary language)."
 msgstr "Der Text für das zusätzliche Feld (fünfte Sprache)."
 
-#: accounts/models.py:52 options/models.py:206 questions/models/catalog.py:111
+#: accounts/models.py:52 options/models.py:211 questions/models/catalog.py:111
 #: questions/models/page.py:136 questions/models/question.py:72
 #: questions/models/questionset.py:106 views/models.py:103
 msgid "Help (primary)"
@@ -103,7 +103,7 @@ msgid ""
 msgstr ""
 "Der Hilfetext, der neben dem Eingabefeld angezeigt wird (erste Sprache)."
 
-#: accounts/models.py:57 options/models.py:211 questions/models/catalog.py:116
+#: accounts/models.py:57 options/models.py:216 questions/models/catalog.py:116
 #: questions/models/page.py:141 questions/models/question.py:77
 #: questions/models/questionset.py:111 views/models.py:108
 msgid "Help (secondary)"
@@ -116,7 +116,7 @@ msgid ""
 msgstr ""
 "Der Hilfetext, der neben dem Eingabefeld angezeigt wird (zweite Sprache)."
 
-#: accounts/models.py:62 options/models.py:216 questions/models/catalog.py:121
+#: accounts/models.py:62 options/models.py:221 questions/models/catalog.py:121
 #: questions/models/page.py:146 questions/models/question.py:82
 #: questions/models/questionset.py:116 views/models.py:113
 msgid "Help (tertiary)"
@@ -129,7 +129,7 @@ msgid ""
 msgstr ""
 "Der Hilfetext, der neben dem Eingabefeld angezeigt wird (dritte Sprache)."
 
-#: accounts/models.py:67 options/models.py:221 questions/models/catalog.py:126
+#: accounts/models.py:67 options/models.py:226 questions/models/catalog.py:126
 #: questions/models/page.py:151 questions/models/question.py:87
 #: questions/models/questionset.py:121 views/models.py:118
 msgid "Help (quaternary)"
@@ -142,7 +142,7 @@ msgid ""
 msgstr ""
 "Der Hilfetext, der neben dem Eingabefeld angezeigt wird (vierte Sprache)."
 
-#: accounts/models.py:72 options/models.py:226 questions/models/catalog.py:131
+#: accounts/models.py:72 options/models.py:231 questions/models/catalog.py:131
 #: questions/models/page.py:156 questions/models/question.py:92
 #: questions/models/questionset.py:126 views/models.py:123
 msgid "Help (quinary)"
@@ -807,7 +807,7 @@ msgstr "Bedingungen"
 #: conditions/models.py:35
 #: conditions/templates/conditions/export/conditions.html:15
 #: domain/models.py:15 domain/templates/domain/export/attributes.html:14
-#: options/models.py:19 options/models.py:151
+#: options/models.py:19 options/models.py:156
 #: options/templates/options/export/option.html:5
 #: options/templates/options/export/optionset.html:5
 #: questions/models/catalog.py:36 questions/models/page.py:35
@@ -829,7 +829,7 @@ msgstr ""
 "Der Uniform Resource Identifier dieser Bedingung (automatisch erstellt)."
 
 #: conditions/models.py:40 domain/models.py:20 options/models.py:24
-#: options/models.py:156 questions/models/catalog.py:41
+#: options/models.py:161 questions/models/catalog.py:41
 #: questions/models/page.py:40 questions/models/question.py:32
 #: questions/models/questionset.py:35 questions/models/section.py:39
 #: tasks/models.py:25 views/models.py:27
@@ -840,7 +840,7 @@ msgstr "URI Prefix"
 msgid "The prefix for the URI of this condition."
 msgstr "Das Präfix für die URI dieser Bedingung."
 
-#: conditions/models.py:45 options/models.py:29 options/models.py:161
+#: conditions/models.py:45 options/models.py:29 options/models.py:166
 #: questions/models/catalog.py:46 questions/models/page.py:45
 #: questions/models/question.py:37 questions/models/questionset.py:40
 #: questions/models/section.py:44 tasks/models.py:30 views/models.py:32
@@ -853,7 +853,7 @@ msgstr "Der Pfad für die URI dieser Bedingung."
 
 #: conditions/models.py:50
 #: conditions/templates/conditions/export/conditions.html:21
-#: domain/models.py:35 options/models.py:34 options/models.py:166
+#: domain/models.py:35 options/models.py:34 options/models.py:171
 #: questions/models/catalog.py:51 questions/models/page.py:50
 #: questions/models/question.py:42 questions/models/questionset.py:45
 #: questions/models/section.py:49
@@ -873,7 +873,7 @@ msgid "Additional internal information about this condition."
 msgstr "Zusätzliche interne Informationen über diese Bedingung."
 
 #: conditions/models.py:55 domain/models.py:40 options/models.py:39
-#: options/models.py:171 questions/models/catalog.py:56
+#: options/models.py:176 questions/models/catalog.py:56
 #: questions/models/page.py:55 questions/models/question.py:47
 #: questions/models/questionset.py:50 questions/models/section.py:54
 #: tasks/models.py:40 views/models.py:42
@@ -885,7 +885,7 @@ msgid "Designates whether this condition can be changed."
 msgstr "Bezeichnet, ob diese Bedingung geändert werden kann."
 
 #: conditions/models.py:60 domain/models.py:45 options/models.py:49
-#: options/models.py:176 questions/models/catalog.py:76
+#: options/models.py:181 questions/models/catalog.py:76
 #: questions/models/page.py:81 questions/models/question.py:67
 #: questions/models/questionset.py:76 questions/models/section.py:64
 #: tasks/models.py:61 views/models.py:63
@@ -951,7 +951,7 @@ msgstr "Ziel"
 msgid "Core"
 msgstr "Kern"
 
-#: core/constants.py:15 options/models.py:145
+#: core/constants.py:15 options/models.py:150
 #: options/templates/options/export/option.html:8 projects/models/value.py:69
 #: questions/constants.py:14 tasks/templates/tasks/export/tasks.html:31
 msgid "Text"
@@ -985,7 +985,7 @@ msgstr "Datum und Zeit"
 msgid "Phone"
 msgstr "Telefon"
 
-#: core/constants.py:24 options/models.py:287 projects/models/value.py:74
+#: core/constants.py:24 options/models.py:292 projects/models/value.py:74
 msgid "Option"
 msgstr "Option"
 
@@ -1013,74 +1013,74 @@ msgstr "Englisch"
 msgid "German"
 msgstr "Deutsch"
 
-#: core/settings.py:306
+#: core/settings.py:308
 msgid "PDF"
 msgstr "PDF"
 
-#: core/settings.py:307
+#: core/settings.py:309
 msgid "Rich Text Format"
 msgstr "Rich Text Format"
 
-#: core/settings.py:308
+#: core/settings.py:310
 msgid "Open Office"
 msgstr "Open Office"
 
-#: core/settings.py:309
+#: core/settings.py:311
 msgid "Microsoft Office"
 msgstr "Microsoft Office"
 
-#: core/settings.py:310
+#: core/settings.py:312
 msgid "HTML"
 msgstr "HTML"
 
-#: core/settings.py:311
+#: core/settings.py:313
 msgid "Markdown"
 msgstr "Markdown"
 
-#: core/settings.py:312
+#: core/settings.py:314
 msgid "mediawiki"
 msgstr "mediawiki"
 
-#: core/settings.py:313
+#: core/settings.py:315
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: core/settings.py:348 core/settings.py:357
+#: core/settings.py:350 core/settings.py:363
 msgid "RDMO XML"
 msgstr "RDMO XML"
 
-#: core/settings.py:349
+#: core/settings.py:351
 msgid "CSV (comma separated)"
 msgstr "CSV (Komma getrennt)"
 
-#: core/settings.py:350
+#: core/settings.py:352
 msgid "CSV (semicolon separated)"
 msgstr "CSV (Semikolon getrennt)"
 
-#: core/settings.py:351
+#: core/settings.py:353
 msgid "JSON"
 msgstr "JSON"
 
-#: core/settings.py:389
+#: core/settings.py:395
 msgid "Enter a valid integer."
 msgstr "Geben Sie eine gültige Ganzzahl ein."
 
-#: core/settings.py:393
+#: core/settings.py:399
 msgid "Enter a valid float."
 msgstr "Geben Sie einen gültigen Wert ein."
 
-#: core/settings.py:409
+#: core/settings.py:415
 msgid "Enter a valid boolean (e.g. 0, 1)."
 msgstr "Geben Sie einen gültigen booleschen Wert ein (z. B. 0, 1)."
 
-#: core/settings.py:413
+#: core/settings.py:419
 msgid ""
 "Enter a valid date (e.g. \"02.03.2024\", \"03/02/2024\", \"2024-02-03\")."
 msgstr ""
 "Geben Sie ein gültiges Datum ein (z.B. \"02.03.2024\", \"03/02/2024\", "
 "\"2024-02-03\")."
 
-#: core/settings.py:427
+#: core/settings.py:433
 msgid "Enter a valid phone number (e.g. \"123456\" or \"+49 (0) 30 123456\")."
 msgstr ""
 "Geben Sie eine gültige Telefonnummer ein (z. B. \"123456\" oder \"+49 (0) 30 "
@@ -1140,6 +1140,7 @@ msgid "The different modules of RDMO have separate endpoints:"
 msgstr "Die verschiedenen Module von RDMO haben separate Endpunkte:"
 
 #: core/templates/core/back_to_project_link.html:4
+#: projects/templates/projects/project_import_success.html:11
 #: projects/templates/projects/project_view.html:15
 msgid "Back to project"
 msgstr "Zurück zum Projekt"
@@ -1231,8 +1232,8 @@ msgstr "weniger anzeigen"
 msgid "%(model)s with the uri \"%(uri)s\" already exists."
 msgstr "%(model)s mit der uri \"%(uri)s\" existiert bereits."
 
-#: core/validators.py:80 domain/validators.py:14 projects/forms.py:442
-#: projects/forms.py:463
+#: core/validators.py:80 domain/validators.py:14 projects/forms.py:446
+#: projects/forms.py:467
 msgid "This field is required."
 msgstr "Dieses Feld wird benötigt."
 
@@ -1423,7 +1424,7 @@ msgstr "Dieses Feld darf nicht leer sein."
 msgid "This is not a valid RDMO import JSON."
 msgstr "Dies ist keine valide RDMO-JSON-Import."
 
-#: options/apps.py:7 options/models.py:59 options/models.py:288
+#: options/apps.py:7 options/models.py:59 options/models.py:293
 #: options/templates/options/export/options.html:6
 #: options/templates/options/export/optionset.html:9
 #: projects/templates/projects/issue_detail.html:81
@@ -1504,79 +1505,79 @@ msgstr "Optionenset"
 msgid "Option sets"
 msgstr "Optionensets"
 
-#: options/models.py:146 questions/constants.py:15
+#: options/models.py:151 questions/constants.py:15
 msgid "Textarea"
 msgstr "Textfeld"
 
-#: options/models.py:152
+#: options/models.py:157
 msgid "The Uniform Resource Identifier of this option (auto-generated)."
 msgstr "Der Uniform Resource Identifier dieser Option (automatisch erstellt)."
 
-#: options/models.py:157
+#: options/models.py:162
 msgid "The prefix for the URI of this option."
 msgstr "Das Präfix für die URI dieser Option."
 
-#: options/models.py:162
+#: options/models.py:167
 msgid "The path for the URI of this option."
 msgstr "Der Pfad für die URI dieser Option."
 
-#: options/models.py:167
+#: options/models.py:172
 msgid "Additional internal information about this option."
 msgstr "Zusätzliche interne Informationen über diese Option."
 
-#: options/models.py:172
+#: options/models.py:177
 msgid "Designates whether this option can be changed."
 msgstr "Bezeichnet, ob diese Option geändert werden kann."
 
-#: options/models.py:177
+#: options/models.py:182
 msgid "The sites that can edit this option (in a multi site setup)."
 msgstr "Die Seiten, die diese Option bearbeiten können (im Multi-Site-Setup)."
 
-#: options/models.py:182
+#: options/models.py:187
 msgid "The text for this option (in the primary language)."
 msgstr "Der Text für diese Option (erste Sprache)."
 
-#: options/models.py:187
+#: options/models.py:192
 msgid "The text for this option (in the secondary language)."
 msgstr "Der Text für diese Option (zweite Sprache)."
 
-#: options/models.py:192
+#: options/models.py:197
 msgid "The text for this option (in the tertiary language)."
 msgstr "Der Text für diese Option (dritte Sprache)."
 
-#: options/models.py:197
+#: options/models.py:202
 msgid "The text for this option (in the quaternary language)."
 msgstr "Der Text für diese Option (vierte Sprache)."
 
-#: options/models.py:202
+#: options/models.py:207
 msgid "The text for this option (in the quinary language)."
 msgstr "Der Text für diese Option (fünfte Sprache)."
 
-#: options/models.py:207
+#: options/models.py:212
 msgid "The help text for this option (in the primary language)."
 msgstr "Der Hilfetext für diese Option (erste Sprache)."
 
-#: options/models.py:212
+#: options/models.py:217
 msgid "The help text for this option (in the secondary language)."
 msgstr "Der Hilfetext für diese Option (zweite Sprache)."
 
-#: options/models.py:217
+#: options/models.py:222
 msgid "The help text for this option (in the tertiary language)."
 msgstr "Der Hilfetext für diese Option (dritte Sprache)."
 
-#: options/models.py:222
+#: options/models.py:227
 msgid "The help text for this option (in the quaternary language)."
 msgstr "Der Hilfetext für diese Option (vierte Sprache)."
 
-#: options/models.py:227
+#: options/models.py:232
 msgid "The help text for this option (in the quinary language)."
 msgstr "Der Hilfetext für diese Option (fünfte Sprache)."
 
-#: options/models.py:231 questions/models/question.py:122
+#: options/models.py:236 questions/models/question.py:122
 msgid "Default text value (primary)"
 msgstr "Standardmäßige Antwort (erste Sprache)"
 
-#: options/models.py:232
+#: options/models.py:237
 msgid ""
 "The default text value for the additional input of this option (in the "
 "primary language)."
@@ -1584,11 +1585,11 @@ msgstr ""
 "Die standardmäßige Text für die zusätzliche Eingabe dieser Option (erste "
 "Sprache)."
 
-#: options/models.py:236 questions/models/question.py:127
+#: options/models.py:241 questions/models/question.py:127
 msgid "Default text value (secondary)"
 msgstr "Standardmäßige Antwort (zweite Sprache)"
 
-#: options/models.py:237
+#: options/models.py:242
 msgid ""
 "The default text value for the additional input of this option (in the "
 "secondary language)."
@@ -1596,11 +1597,11 @@ msgstr ""
 "Die standardmäßige Text für die zusätzliche Eingabe dieser Option (zweite "
 "Sprache)."
 
-#: options/models.py:241 questions/models/question.py:132
+#: options/models.py:246 questions/models/question.py:132
 msgid "Default text value (tertiary)"
 msgstr "Standardmäßige Antwort (dritte Sprache)"
 
-#: options/models.py:242
+#: options/models.py:247
 msgid ""
 "The default text value for the additional input of this option (in the "
 "tertiary language)."
@@ -1608,11 +1609,11 @@ msgstr ""
 "Die standardmäßige Text für die zusätzliche Eingabe dieser Option (dritte "
 "Sprache)."
 
-#: options/models.py:246 questions/models/question.py:137
+#: options/models.py:251 questions/models/question.py:137
 msgid "Default text value (quaternary)"
 msgstr "Standardmäßige Antwort (vierte Sprache)"
 
-#: options/models.py:247
+#: options/models.py:252
 msgid ""
 "The default text value for the additional input of this option (in the "
 "quaternary language)."
@@ -1620,11 +1621,11 @@ msgstr ""
 "Die standardmäßige Text für die zusätzliche Eingabe dieser Option (vierte "
 "Sprache)."
 
-#: options/models.py:251 questions/models/question.py:142
+#: options/models.py:256 questions/models/question.py:142
 msgid "Default text value (quinary)"
 msgstr "Standardmäßige Antwort (fünfte Sprache)"
 
-#: options/models.py:252
+#: options/models.py:257
 msgid ""
 "The default text value for the additional input of this option (in the "
 "quinary language)."
@@ -1632,51 +1633,51 @@ msgstr ""
 "Die standardmäßige Text für die zusätzliche Eingabe dieser Option (fünfte "
 "Sprache)."
 
-#: options/models.py:256
+#: options/models.py:261
 msgid "View text (primary)"
 msgstr "Ansichtstext (erste Sprache)"
 
-#: options/models.py:257
+#: options/models.py:262
 msgid "The view text for this option (in the primary language)."
 msgstr "Der Ansichtstext für diese Option (erste Sprache)."
 
-#: options/models.py:261
+#: options/models.py:266
 msgid "View text (secondary)"
 msgstr "Ansichtstext (zweite Sprache)"
 
-#: options/models.py:262
+#: options/models.py:267
 msgid "The view text for this option (in the secondary language)."
 msgstr "Der Ansichtstext für diese Option (zweite Sprache)."
 
-#: options/models.py:266
+#: options/models.py:271
 msgid "View text (tertiary)"
 msgstr "Ansichtstext (dritte Sprache)"
 
-#: options/models.py:267
+#: options/models.py:272
 msgid "The view text for this option (in the tertiary language)."
 msgstr "Der Ansichtstext für diese Option (dritte Sprache)."
 
-#: options/models.py:271
+#: options/models.py:276
 msgid "View text (quaternary)"
 msgstr "Ansichtstext (vierte Sprache)"
 
-#: options/models.py:272
+#: options/models.py:277
 msgid "The view text for this option (in the quaternary language)."
 msgstr "Der Ansichtstext für diese Option (vierte Sprache)."
 
-#: options/models.py:276
+#: options/models.py:281
 msgid "View text (quinary)"
 msgstr "Ansichtstext (fünfte Sprache)"
 
-#: options/models.py:277
+#: options/models.py:282
 msgid "The view text for this option (in the quinary language)."
 msgstr "Der Ansichtstext für diese Option (fünfte Sprache)."
 
-#: options/models.py:281 options/templates/options/export/option.html:17
+#: options/models.py:286 options/templates/options/export/option.html:17
 msgid "Additional input"
 msgstr "Zusätzliche Eingabe"
 
-#: options/models.py:282
+#: options/models.py:287
 msgid "Designates whether an additional input is possible for this option."
 msgstr "Legt fest, ob eine zusätzliche Eingabe für diese Option möglich ist."
 
@@ -1727,7 +1728,7 @@ msgstr "Url-Name"
 msgid "The url_name for this overlay."
 msgstr "Der url_name für diese Einblendung."
 
-#: overlays/models.py:26 projects/forms.py:430
+#: overlays/models.py:26 projects/forms.py:434
 #: projects/templates/projects/project_answers.html:13
 #: projects/templates/projects/project_view.html:28
 msgid "Current"
@@ -1842,71 +1843,71 @@ msgstr ""
 msgid "Only existing users can be added silently."
 msgstr "Nur bestehende Benutzer können stillschweigend hinzugefügt werden."
 
-#: projects/forms.py:396 projects/forms.py:400
+#: projects/forms.py:400 projects/forms.py:404
 #, python-format
 msgid "Attach %s"
 msgstr "%s hinzufügen"
 
-#: projects/forms.py:406
+#: projects/forms.py:410
 msgid "Subject"
 msgstr "Betreff"
 
-#: projects/forms.py:407
+#: projects/forms.py:411
 msgid "Message"
 msgstr "Nachricht"
 
-#: projects/forms.py:414
+#: projects/forms.py:418
 msgid "Answers"
 msgstr "Antworten"
 
-#: projects/forms.py:415
+#: projects/forms.py:419
 msgid "Attach the output of \"View answers\"."
 msgstr "Die Ausgabe von \"Antworten anzeigen\" anhängen."
 
-#: projects/forms.py:418 projects/models/project.py:64
+#: projects/forms.py:422 projects/models/project.py:64
 #: projects/templates/projects/project_detail_views.html:11 views/apps.py:7
 #: views/models.py:137 views/templates/views/export/views.html:6
 msgid "Views"
 msgstr "Ansichten"
 
-#: projects/forms.py:422
+#: projects/forms.py:426
 msgid "Files"
 msgstr "Dateien"
 
-#: projects/forms.py:429 projects/models/snapshot.py:33
+#: projects/forms.py:433 projects/models/snapshot.py:33
 #: projects/models/value.py:38
 #: projects/templates/projects/project_detail_snapshots.html:20
 #: projects/templates/projects/project_import.html:94
 msgid "Snapshot"
 msgstr "Snapshot"
 
-#: projects/forms.py:433
+#: projects/forms.py:437
 msgid "Format"
 msgstr "Format"
 
-#: projects/forms.py:448 projects/forms.py:453
+#: projects/forms.py:452 projects/forms.py:457
 msgid "Recipients"
 msgstr "Empfänger"
 
-#: projects/forms.py:454
+#: projects/forms.py:458
 msgid "Enter recipients line by line"
 msgstr "Empfänger Zeile für Zeile eingeben"
 
-#: projects/imports.py:242
+#: projects/imports.py:249
 msgid "Import project from this URL"
 msgstr "Projekt von dieser URL importieren"
 
-#: projects/mixins.py:79 projects/mixins.py:96 projects/mixins.py:111
-#: projects/mixins.py:134 projects/mixins.py:152 projects/mixins.py:167
-#: projects/mixins.py:202
+#: projects/mixins.py:80 projects/mixins.py:97 projects/mixins.py:112
+#: projects/mixins.py:135 projects/mixins.py:153 projects/mixins.py:168
+#: projects/mixins.py:223
 msgid "Import error"
 msgstr "Fehler beim Import"
 
-#: projects/mixins.py:80 projects/mixins.py:153 projects/mixins.py:203
+#: projects/mixins.py:81 projects/mixins.py:154 projects/mixins.py:224
 msgid "There has been an error with your import."
 msgstr "Bei Ihrem Import ist ein Fehler aufgetreten."
 
-#: projects/mixins.py:97
+#: projects/mixins.py:98
 msgid ""
 "There has been an error with your import. No uploaded or retrieved file "
 "could be found."
@@ -1914,7 +1915,7 @@ msgstr ""
 "Bei Ihrem Import ist ein Fehler aufgetreten. Es konnte keine hochgeladene "
 "oder abgerufene Datei gefunden werden."
 
-#: projects/mixins.py:135
+#: projects/mixins.py:136
 msgid "Files of this type cannot be imported."
 msgstr "Dateien dieses Typs können nicht importiert werden."
 
@@ -2444,15 +2445,15 @@ msgstr "Es muss entweder ein Benutzer oder eine E-Mail angegeben werden."
 msgid "User and e-mail are mutually exclusive."
 msgstr "Benutzer und E-Mail schließen einander aus."
 
-#: projects/serializers/v1/page.py:121
+#: projects/serializers/v1/page.py:122
 msgid "entry"
 msgstr "Eintrag"
 
-#: projects/serializers/v1/page.py:160
+#: projects/serializers/v1/page.py:161
 msgid "block"
 msgstr "Block"
 
-#: projects/serializers/v1/page.py:223
+#: projects/serializers/v1/page.py:224
 msgid "set"
 msgstr "Set"
 
@@ -2920,6 +2921,7 @@ msgstr "Fragen anzeigen"
 
 #: projects/templates/projects/project_detail_sidebar.html:28
 #: projects/templates/projects/project_detail_snapshots.html:45
+#: projects/templates/projects/project_import_success.html:9
 msgid "View answers"
 msgstr "Antworten anzeigen"
 
@@ -2955,21 +2957,21 @@ msgstr "Snapshot erstellen"
 msgid "Back to projects overview"
 msgstr "Zurück zu den Projekten"
 
-#: projects/templates/projects/project_detail_sidebar.html:142
+#: projects/templates/projects/project_detail_sidebar.html:171
 #: projects/templates/projects/project_import.html:160
 #: projects/templates/projects/project_import_form.html:18
 msgid "Import values"
 msgstr "Werte importieren"
 
-#: projects/templates/projects/project_detail_sidebar.html:147
+#: projects/templates/projects/project_detail_sidebar.html:176
 msgid "Import from file"
 msgstr "Importieren aus Datei"
 
-#: projects/templates/projects/project_detail_sidebar.html:155
+#: projects/templates/projects/project_detail_sidebar.html:184
 msgid "Import from parent project"
 msgstr "Importieren aus übergeordnetem Projekt"
 
-#: projects/templates/projects/project_detail_sidebar.html:163
+#: projects/templates/projects/project_detail_sidebar.html:192
 msgid "Import directly"
 msgstr "Projekt direkt importieren"
 
@@ -3141,6 +3143,10 @@ msgstr "Die Antwort konnte nicht importiert werden."
 #: projects/templates/projects/project_import.html:162
 msgid "Import project"
 msgstr "Projekt importieren"
+
+#: projects/templates/projects/project_import_success.html:7
+msgid "Successful Import"
+msgstr "Erfolgreicher Import"
 
 #: projects/templates/projects/project_interview_add_set_help.html:4
 msgid ""
@@ -4152,28 +4158,28 @@ msgstr ""
 msgid "Services"
 msgstr "Services"
 
-#: services/providers.py:37 services/providers.py:73
+#: services/providers.py:82
 msgid "OAuth error"
 msgstr "OAuth Fehler"
 
-#: services/providers.py:38 services/providers.py:74
+#: services/providers.py:83
 #, python-format
 msgid "Something went wrong: %s"
 msgstr "Etwas ging schief: %s"
 
-#: services/providers.py:92
+#: services/providers.py:102
 msgid "OAuth authorization not successful"
 msgstr "OAuth Autorisierung war nicht erfolgreich"
 
-#: services/providers.py:93
+#: services/providers.py:103
 msgid "State parameter did not match."
 msgstr "Der Zustandsparameter stimmt nicht überein."
 
-#: services/providers.py:124
+#: services/providers.py:131
 msgid "OAuth authorization successful"
 msgstr "OAuth Autorisierung erfolgreich"
 
-#: services/providers.py:125
+#: services/providers.py:132
 msgid "But no redirect could be found."
 msgstr "Aber es konnte keine Umleitung gefunden werden."
 
@@ -4636,9 +4642,8 @@ msgstr "Set"
 #~ "on {self.gitlab_url}. The upload of attachments is not supported by "
 #~ "GitLab."
 #~ msgstr ""
-#~ "Diese Integration ermöglicht die Erstellung von Aufgaben auf "
-#~ "{self.gitlab_url}. Das Hochladen von Anhängen wird von GitLab nicht "
-#~ "unterstützt."
+#~ "Diese Integration ermöglicht die Erstellung von Aufgaben auf {self."
+#~ "gitlab_url}. Das Hochladen von Anhängen wird von GitLab nicht unterstützt."
 
 #~ msgid "The secret for a GitLab webhook to close a task."
 #~ msgstr "Das Geheimnis für einen GitLab-Webhook zum Schließen einer Aufgabe."
