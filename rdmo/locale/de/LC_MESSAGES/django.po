@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RDMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 14:31+0000\n"
+"POT-Creation-Date: 2025-09-12 15:52+0000\n"
 "PO-Revision-Date: 2025-04-28 13:46+0200\n"
 "Last-Translator: Jochen Klar <jklar@aip.de>\n"
 "Language-Team: RDMO <rdmo-team@listserv.dfn.de>\n"
@@ -4158,28 +4158,28 @@ msgstr ""
 msgid "Services"
 msgstr "Services"
 
-#: services/providers.py:82
-msgid "OAuth error"
-msgstr "OAuth Fehler"
+#: services/providers.py:76
+msgid "Request (export or import) error"
+msgstr "Anfrage-Fehler (Export oder Import)"
 
-#: services/providers.py:83
+#: services/providers.py:77
 #, python-format
 msgid "Something went wrong: %s"
 msgstr "Etwas ging schief: %s"
 
-#: services/providers.py:102
+#: services/providers.py:96
 msgid "OAuth authorization not successful"
 msgstr "OAuth Autorisierung war nicht erfolgreich"
 
-#: services/providers.py:103
+#: services/providers.py:97
 msgid "State parameter did not match."
 msgstr "Der Zustandsparameter stimmt nicht überein."
 
-#: services/providers.py:131
+#: services/providers.py:125
 msgid "OAuth authorization successful"
 msgstr "OAuth Autorisierung erfolgreich"
 
-#: services/providers.py:132
+#: services/providers.py:126
 msgid "But no redirect could be found."
 msgstr "Aber es konnte keine Umleitung gefunden werden."
 
@@ -4431,6 +4431,9 @@ msgstr "Datei"
 #: views/templatetags/view_tags.py:210
 msgid "Set"
 msgstr "Set"
+
+#~ msgid "OAuth error"
+#~ msgstr "OAuth Fehler"
 
 #~ msgid "Session Login"
 #~ msgstr "Session Login"

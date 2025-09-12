@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 14:31+0000\n"
+"POT-Creation-Date: 2025-09-12 15:52+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dario Pilori <d.pilori@inrim.it>\n"
 "Language-Team: \n"
@@ -4180,28 +4180,28 @@ msgstr ""
 msgid "Services"
 msgstr "Servizi"
 
-#: services/providers.py:82
-msgid "OAuth error"
-msgstr "Errore OAuth"
+#: services/providers.py:76
+msgid "Request (export or import) error"
+msgstr "Errore di richiesta HTTP (esportazione o importazione)"
 
-#: services/providers.py:83
+#: services/providers.py:77
 #, python-format
 msgid "Something went wrong: %s"
 msgstr "Qualcosa è andato male: %s"
 
-#: services/providers.py:102
+#: services/providers.py:96
 msgid "OAuth authorization not successful"
 msgstr "Autorizzazione OAuth non riuscita"
 
-#: services/providers.py:103
+#: services/providers.py:97
 msgid "State parameter did not match."
 msgstr "Il parametro di stato non corrisponde."
 
-#: services/providers.py:131
+#: services/providers.py:125
 msgid "OAuth authorization successful"
 msgstr "Autorizzazione OAuth riuscita"
 
-#: services/providers.py:132
+#: services/providers.py:126
 msgid "But no redirect could be found."
 msgstr "Ma nessuna ridirezione è stata trovata."
 
@@ -4457,6 +4457,9 @@ msgstr "file"
 #: views/templatetags/view_tags.py:210
 msgid "Set"
 msgstr "Raccolta"
+
+#~ msgid "OAuth error"
+#~ msgstr "Errore OAuth"
 
 #~ msgid "Session Login"
 #~ msgstr "Accesso alla sessione"
