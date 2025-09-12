@@ -62,7 +62,6 @@ class OauthProviderMixin:
             else:
                 response = request_method(url, headers=headers)
 
-
             if response.status_code == 401:
                 logger.warning('%s forbidden: %s (%s)', method, response.content, response.status_code)
             else:
@@ -74,7 +73,7 @@ class OauthProviderMixin:
                     logger.warning('%s error: %s (%s)', method, response.content, response.status_code)
 
                     return render(request, 'core/error.html', {
-                        'title': _('OAuth error'),
+                        'title': _('Request (export or import) error'),
                         'errors': [_('Something went wrong: %s') % self.get_error_message(response)]
                     }, status=200)
 
