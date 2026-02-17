@@ -14,72 +14,68 @@ logger = logging.getLogger(__name__)
 
 class OauthProviderMixin:
 
-    def make_request(self, request, method, url, apply_data_processing=False, *args, **kwargs):
-        methods = {
-            'get': {'request_method': requests.get, 'success_method': self.get_success},
-            'post': {'request_method': requests.post, 'success_method': self.post_success},
-            'put': {'request_method': requests.put, 'success_method': self.put_success}
-        }
-        if method not in methods.keys():
-            raise ValueError(f"Unsupported method: {method}")
-
+    def get(self, request, url):
+        # get access token from the session
         access_token = self.get_from_session(request, 'access_token')
         if access_token:
-            # if the access_token is available make request to the upstream service
-            logger.debug('%s: %s', method, url)
+            # if the access_token is available post to the upstream service
+            logger.debug('get: %s', url)
 
-            request_method, success_method = methods[method].values()
-
-            data_processing_params = {}
-            if 'data_processing_params' in kwargs.keys():
-                data_processing_params = kwargs['data_processing_params']
-            
-            headers = self.get_authorization_headers(access_token)
-            if 'multipart' in kwargs.keys():                
-                multipart = kwargs['multipart']
-                if apply_data_processing:
-                    processed_multipart = self.process_request_data({**multipart}, access_token=access_token, **data_processing_params)
-                    multipart_encoder = MultipartEncoder(fields=processed_multipart)
-                else:
-                    multipart_encoder = MultipartEncoder(fields=multipart)
-                
-                headers['Content-Type'] = multipart_encoder.content_type
-                response = request_method(url, data=multipart_encoder, headers=headers)
-            elif 'files' in kwargs.keys():
-                files = kwargs['files']
-                if apply_data_processing:
-                    processed_files = self.process_request_data({**files}, access_token=access_token, **data_processing_params)
-                    response = request_method(url, files=processed_files, headers=headers)
-                else:
-                    response = request_method(url, files=files, headers=headers)
-            elif 'json' in kwargs.keys():
-                json = kwargs['json']
-                if apply_data_processing:
-                    processed_json = self.process_request_data({**json}, access_token=access_token, **data_processing_params)
-                    response = request_method(url, json=processed_json, headers=headers)
-                else:
-                    response = request_method(url, json=json, headers=headers)
-            else:
-                response = request_method(url, headers=headers)
+            response = requests.get(url, headers=self.get_authorization_headers(access_token))
 
             if response.status_code == 401:
-                logger.warning('%s forbidden: %s (%s)', method, response.content, response.status_code)
+                logger.warning('get forbidden: %s (%s)', response.content, response.status_code)
             else:
                 try:
                     response.raise_for_status()
-                    return success_method(request, response)
+                    return self.get_success(request, response)
 
                 except requests.HTTPError:
-                    logger.warning('%s error: %s (%s)', method, response.content, response.status_code)
+                    logger.warning('get error: %s (%s)', response.content, response.status_code)
 
                     return render(request, 'core/error.html', {
-                        'title': _('Request (export or import) error'),
+                        'title': _('OAuth error'),
                         'errors': [_('Something went wrong: %s') % self.get_error_message(response)]
                     }, status=200)
 
         # if the above did not work authorize first
-        kwargs['apply_data_processing'] = apply_data_processing
-        self.store_in_session(request, 'request', (method, url, kwargs))
+        self.store_in_session(request, 'request', ('get', url))
+        return self.authorize(request)
+
+    def post(self, request, url, json=None, files=None, multipart=None):
+        # get access token from the session
+        access_token = self.get_from_session(request, 'access_token')
+        if access_token:
+            # if the access_token is available post to the upstream service
+            logger.debug('post: %s %s %s', url, json, files)
+
+            if multipart is not None:
+                multipart_encoder = MultipartEncoder(fields=multipart)
+                headers = self.get_authorization_headers(access_token)
+                headers['Content-Type'] = multipart_encoder.content_type
+                response = requests.post(url, data=multipart_encoder, headers=headers)
+            elif files is not None:
+                response = requests.post(url, files=files, headers=self.get_authorization_headers(access_token))
+            else:
+                response = requests.post(url, json=json, headers=self.get_authorization_headers(access_token))
+
+            if response.status_code == 401:
+                logger.warning('post forbidden: %s (%s)', response.content, response.status_code)
+            else:
+                try:
+                    response.raise_for_status()
+                    return self.post_success(request, response)
+
+                except requests.HTTPError:
+                    logger.warning('post error: %s (%s)', response.content, response.status_code)
+
+                    return render(request, 'core/error.html', {
+                        'title': _('OAuth error'),
+                        'errors': [_('Something went wrong: %s') % self.get_error_message(response)]
+                    }, status=200)
+
+        # if the above did not work authorize first
+        self.store_in_session(request, 'request', ('post', url, json, files, multipart))
         return self.authorize(request)
 
     def authorize(self, request):
@@ -114,10 +110,13 @@ class OauthProviderMixin:
         # store access token in session
         self.store_in_session(request, 'access_token', response_data.get('access_token'))
 
-        # get request data from session
+        # get post data from session
         try:
-            method, url, kwargs = self.pop_from_session(request, 'request')
-            return self.make_request(request, method, url, **kwargs)
+            method, *args = self.pop_from_session(request, 'request')
+            if method == 'get':
+                return self.get(request, *args)
+            elif method == 'post':
+                return self.post(request, *args)
         except ValueError:
             pass
 
@@ -130,12 +129,6 @@ class OauthProviderMixin:
         raise NotImplementedError
 
     def post_success(self, request, response):
-        raise NotImplementedError
-    
-    def put_success(self, request, response):
-        raise NotImplementedError
-    
-    def process_request_data(self, data, access_token, *args, **kwargs):
         raise NotImplementedError
 
     def get_session_key(self, key):
@@ -160,9 +153,6 @@ class OauthProviderMixin:
         raise NotImplementedError
 
     def get_callback_auth(self, request):
-        return None
-    
-    def get_request_auth(self, request):
         return None
 
     def get_callback_headers(self, request):
