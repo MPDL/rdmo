@@ -49,7 +49,6 @@ class OptionSetSerializer(ElementModelSerializerMixin, serializers.ModelSerializ
             'uri',
             'model',
             'options',
-            'provider_widget_props',
             'has_provider',
             'has_search',
             'has_refresh',
