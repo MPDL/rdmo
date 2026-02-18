@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { isEmpty, isNil } from 'lodash'
 import { useDebouncedCallback } from 'use-debounce'
-// import { convert } from 'html-to-text'
 
 import ProjectApi from '../../../api/ProjectApi'
 import { projectId } from '../../../utils/meta'
@@ -20,6 +19,7 @@ import { gatherProviderWidgetProps } from '../../../utils/providers'
 import OptionHelp from './common/OptionHelp'
 import OptionText from './common/OptionText'
 
+import SelectValueContainer from './SelectValueContainer'
 
 const SelectInput = ({ question, value, options, disabled, creatable, updateValue, buttons }) => {
   
@@ -55,7 +55,7 @@ const SelectInput = ({ question, value, options, disabled, creatable, updateValu
 
   const handleLoadOptions = useDebouncedCallback((searchText, callback) => {
     // Updating "options" through the redux store is buggy, so we use AsyncSelect
-    // and use a asyncrounous callback to update the options in the select field.
+    // and use a asynchronous callback to update the options in the select field.
     // Note that the "options" array in the component remains [].
     const search = searchText || value.text
     if (isEmpty(search)) {
@@ -105,7 +105,8 @@ const SelectInput = ({ question, value, options, disabled, creatable, updateValu
         <OptionText option={option} />
         <OptionHelp className="ml-10" option={option} />
       </span>
-    )
+    ),
+    components: { ValueContainer: SelectValueContainer }
   }
 
   selectProps = gatherProviderWidgetProps(selectProps, question.optionsets)
