@@ -106,7 +106,10 @@ class RDMOXMLImport(Import):
         if self.current_project is None:
             catalog_uri = get_uri(self.root.find('catalog'), self.ns_map)
 
-            available_catalogs = Catalog.objects.filter_for_user(self.request.user)
+            available_catalogs = Catalog.objects.filter_current_site() \
+                                                .filter_group(self.request.user) \
+                                                .filter_availability(self.request.user) \
+                                                .order_by('order')
 
             try:
                 self.catalog = available_catalogs.get(uri=catalog_uri)
@@ -148,6 +151,13 @@ class RDMOXMLImport(Import):
         if values_node is not None:
             for value_node in values_node.findall('value'):
                 self.values.append(self.get_value(value_node))
+
+        def sort_by_external_id(e):
+            # values without an external id come first
+            # external id marks values used by option providers
+            return e.external_id
+
+        self.values.sort(key = sort_by_external_id)
 
         snapshots_node = self.root.find('snapshots')
         if snapshots_node is not None:
