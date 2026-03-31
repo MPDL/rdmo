@@ -1,5 +1,74 @@
 # Changelog 📔
 
+## [RDMO 2.4.4](https://github.com/rdmorganiser/rdmo/releases/tag/2.4.4) (March 26, 2026)
+
+### Bug fixes 🐛
+
+Due to a breaking change in
+[Django Rest Framework 3.17.0](https://github.com/encode/django-rest-framework/releases/tag/3.17.0)
+several bugs needed to be fixed (#1567):
+
+* Refactor `REST_FRAMEWORK` settings
+* Fix page serializers
+* Pin Django Rest Framework minor version
+
+**Milestones**:
+[2.4.4](https://github.com/rdmorganiser/rdmo/milestone/30?closed=1)
+
+**Commit history**: [2.4.3...2.4.4](https://github.com/rdmorganiser/rdmo/compare/2.4.3...2.4.4)
+
+## [RDMO 2.4.3](https://github.com/rdmorganiser/rdmo/releases/tag/2.4.3) (March 16, 2026)
+
+### Important ⚠️
+
+Due to an errors in our release process, RDMO 2.4.1 and RDMO 2.4.2 used an outdated Node.js
+version to build the front-end assets.
+
+### Maintenance and Dependencies 🔧
+
+* Fix `npm` management script and build with correct node version.
+* Upgrade `node` from `22.16` to `22.22`
+* Upgrade copy-webpack-plugin upgrade.
+
+**Milestones**:
+[2.4.3](https://github.com/rdmorganiser/rdmo/milestone/29?closed=1)
+
+**Commit history**: [2.4.2...2.4.3](https://github.com/rdmorganiser/rdmo/compare/2.4.2...2.4.3)
+
+## [RDMO 2.4.2](https://github.com/rdmorganiser/rdmo/releases/tag/2.4.2) (March 13, 2026)
+
+### Maintenance and Dependencies 🔧
+
+* Revert copy-webpack-plugin upgrade, which caused missing static files in RDMO 2.4.1.
+* Add additional checks to `build` management script.
+
+**Milestones**:
+[2.4.2](https://github.com/rdmorganiser/rdmo/milestone/28?closed=1)
+
+**Commit history**: [2.4.1...2.4.2](https://github.com/rdmorganiser/rdmo/compare/2.4.1...2.4.2)
+
+## [RDMO 2.4.1](https://github.com/rdmorganiser/rdmo/releases/tag/2.4.1) (March 9, 2026)
+
+### Breaking changes ⚠️
+
+* Plugins should now use the signals in `rdmo/projects/signals.py` instead of `post_save` of the `Value` model, since
+  the latter will trigger when copying projects or creating snapshots, which leads to unintended creation of
+  `Value` instances (see https://github.com/rdmorganiser/rdmo-plugins-orcid/issues/2).
+
+### Bug fixes 🐛
+
+* Fix filtering of tasks and views when creating new projects and refactor sync functionality (#1518).
+* Fix removal of blank inputs in the interview (#1532).
+* Fix manual input of dates in the date picker widget in the interview and the filter in the projects table (#1539).
+* Fix catalog export template.
+* Fix timestamps of snapshots in copied projects: Snapshots and values will keep their original
+  `created` timestamp, but will update their `updated` timestamp.
+
+**Milestones**:
+[2.4.1](https://github.com/rdmorganiser/rdmo/milestone/27?closed=1)
+
+**Commit history**: [2.4.0...2.4.1](https://github.com/rdmorganiser/rdmo/compare/2.4.0...2.4.1)
+
 ## [RDMO 2.4.0](https://github.com/rdmorganiser/rdmo/releases/tag/2.4.0) (December 15, 2025)
 
 ### Main improvements ⭐
