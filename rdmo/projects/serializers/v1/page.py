@@ -1,4 +1,3 @@
-from typing import Optional, Union
 
 from django.utils.translation import gettext_lazy as _
 
@@ -50,7 +49,6 @@ class OptionSetSerializer(ElementModelSerializerMixin, serializers.ModelSerializ
             'uri',
             'model',
             'options',
-            'provider_widget_props',
             'has_provider',
             'has_search',
             'has_refresh',
@@ -79,7 +77,7 @@ class QuestionSerializer(ElementModelSerializerMixin, MarkdownSerializerMixin, s
     markdown_fields = ('help', 'text')
 
     model = serializers.SerializerMethodField()
-    conditions = ConditionSerializer(default=None, many=True)
+    conditions = ConditionSerializer(default=list, many=True)
     optionsets = serializers.SerializerMethodField()
 
     verbose_name = serializers.SerializerMethodField()
@@ -127,7 +125,7 @@ class QuestionSetSerializer(ElementModelSerializerMixin, MarkdownSerializerMixin
     markdown_fields = ('title', 'help')
 
     model = serializers.SerializerMethodField()
-    conditions = ConditionSerializer(default=None, many=True)
+    conditions = ConditionSerializer(default=list, many=True)
     elements = serializers.SerializerMethodField()
     verbose_name = serializers.SerializerMethodField()
 
@@ -166,7 +164,7 @@ class PageSerializer(ElementModelSerializerMixin, MarkdownSerializerMixin, seria
     markdown_fields = ('title', 'help')
 
     model = serializers.SerializerMethodField()
-    conditions = ConditionSerializer(default=None, many=True)
+    conditions = ConditionSerializer(default=list, many=True)
     elements = serializers.SerializerMethodField()
     section = serializers.SerializerMethodField()
     prev_page = serializers.SerializerMethodField()
@@ -204,7 +202,7 @@ class PageSerializer(ElementModelSerializerMixin, MarkdownSerializerMixin, seria
             else:
                 yield QuestionSerializer(element, context=self.context).data
 
-    def get_section(self, obj) -> dict[str, Union[int, str, None]]:
+    def get_section(self, obj) -> dict[str, int | str | None]:
         section = self.context['catalog'].get_section_for_page(obj)
         return {
            'id': section.id,
@@ -212,11 +210,11 @@ class PageSerializer(ElementModelSerializerMixin, MarkdownSerializerMixin, seria
            'first': section.elements[0].id if section.elements else None
         } if section else {}
 
-    def get_prev_page(self, obj) -> Optional[int]:
+    def get_prev_page(self, obj) -> int | None:
         page = self.context['catalog'].get_prev_page(obj)
         return page.id if page else None
 
-    def get_next_page(self, obj) -> Optional[int]:
+    def get_next_page(self, obj) -> int | None:
         page = self.context['catalog'].get_next_page(obj)
         return page.id if page else None
 
