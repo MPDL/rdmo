@@ -33,7 +33,7 @@ class OauthIssueProvider(OauthProviderMixin, IssueProvider):
                 'errors': [_('The Integration is not configured correctly.')]
             }, status=200)
 
-        return self.make_request(request, 'post', url, json=data)
+        return self.post(request, url, data)
 
     def update_issue(self, request, remote_url):
         from rdmo.projects.models import Integration, Issue, IssueResource
