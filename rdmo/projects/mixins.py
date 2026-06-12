@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
-from django.urls import reverse
 
 from rdmo.core.imports import handle_uploaded_file
 from rdmo.core.plugins import get_plugin, get_plugins
@@ -179,17 +178,7 @@ class ProjectImportMixin:
                     save_import_tasks(self.object, import_plugin.tasks)
                     save_import_views(self.object, import_plugin.views)
 
-                    return render(
-                        self.request, 
-                        'projects/project_import_success.html', 
-                        {
-                            'project_url': current_project.get_absolute_url(), 
-                            'project_answers_url': self.request.build_absolute_uri(
-                                reverse('project_answers', kwargs={'pk': current_project.id})
-                            )
-                        }, 
-                        status=200
-                    )
+                    return HttpResponseRedirect(current_project.get_absolute_url())
 
                 else:
                     # add current site and save project
@@ -208,17 +197,7 @@ class ProjectImportMixin:
                     save_import_tasks(import_plugin.project, import_plugin.tasks)
                     save_import_views(import_plugin.project, import_plugin.views)
 
-                    return render(
-                        self.request, 
-                        'projects/project_import_success.html',
-                        {
-                            'project_url': import_plugin.project.get_absolute_url(), 
-                            'project_answers_url': self.request.build_absolute_uri(
-                                reverse('project_answers', kwargs={'pk': import_plugin.project.id})
-                            )
-                        }, 
-                        status=200
-                    )
+                    return HttpResponseRedirect(import_plugin.project.get_absolute_url())
 
         return render(self.request, 'core/error.html', {
             'title': _('Import error'),
